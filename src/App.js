@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from "react";
+import "./App.css";
+import Header from "./Structure/Header.js";
+import MainPage from "./Structure/MainPage.js"
+import Footer from "./Structure/Footer.js";
 
 function App() {
+  useState();
+  let theme = "Default";
+  const [clicked, setClicked] = useState('default');
+  const handleClick = () => {
+    (clicked === 'default' )? setClicked('ereader') : setClicked('default');
+    console.log(clicked);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={clicked} >
+      <Header></Header>
+      <MainPage></MainPage>
+      <Footer></Footer>
+      <button onClick={handleClick}>Change Theme</button>
     </div>
   );
 }
