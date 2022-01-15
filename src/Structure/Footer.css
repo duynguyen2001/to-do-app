@@ -1,3 +1,8 @@
-.footer{
-    position: ;
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    text-align: left;
+    background-color: dimgray;
+    width: 100%;
 }

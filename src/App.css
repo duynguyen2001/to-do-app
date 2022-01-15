@@ -1,8 +1,4 @@
-.default{
-  background-color: black;
-  color: white;
-}
-.ereader{
-  background-color: white;
-  color: black;
+.App{
+    object-position: center top;
+    text-align: center;
 }

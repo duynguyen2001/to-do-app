@@ -1,25 +1,19 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React, {useState} from "react";
-import "./App.css";
 import Header from "./Structure/Header.js";
 import MainPage from "./Structure/MainPage.js"
 import Footer from "./Structure/Footer.js";
-
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import "./App.css"
 function App() {
-  useState();
-  let theme = "Default";
-  const [clicked, setClicked] = useState('default');
-  const handleClick = () => {
-    (clicked === 'default' )? setClicked('ereader') : setClicked('default');
-    console.log(clicked);
-  };
 
   return (
-    <div className={clicked} >
+    <Container fluid className = "App">
       <Header></Header>
       <MainPage></MainPage>
       <Footer></Footer>
-      <button onClick={handleClick}>Change Theme</button>
-    </div>
+    </Container>
   );
 }
 
