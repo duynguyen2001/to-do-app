@@ -18,9 +18,9 @@ function Create(writtenTask, writtenDescription, refreshList) {
     })
     .then((res) => refreshList());
 }
-function Update(item, dataChange, refreshList) {
+function Update(item_id, dataChange, refreshList) {
   axios
-    .put(`http://localhost:8000/api/todos/${item.id}/`, dataChange)
+    .put(`http://localhost:8000/api/todos/${item_id}/`, dataChange)
     .then((res) => refreshList());
 }
 function Delete(item, refreshList) {

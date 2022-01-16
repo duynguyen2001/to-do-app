@@ -39,6 +39,9 @@ const MainPage = (props) => {
   const handleDelete = (item) => {
     Delete(item, refreshList);
   };
+  const handleEdit = (item, dataChange) => {
+    Update(item.id, dataChange, refreshList);
+  };
   const handleCompleted = (item) => {
     const dataChange = {
       title: item.title,
@@ -46,9 +49,9 @@ const MainPage = (props) => {
       completed:
         item.completed === "N" ? "P" : item.completed === "P" ? "F" : "N",
     };
-    Update(item, dataChange, refreshList);
+    Update(item.id, dataChange, refreshList);
   };
-
+  
   const filterNotStarted = (item) => {
     return item["completed"] === "N";
   };
@@ -131,7 +134,7 @@ const MainPage = (props) => {
       <Row gap={5}></Row>
       <Card style={{ width: "100%" }}>
         <Card.Title style={{ textAlign: "center" }}>Task to do</Card.Title>
-        {renderList(TodoList, handleDelete, handleCompleted)}
+        {renderList(TodoList, handleDelete, handleCompleted, handleEdit)}
       </Card>
     </Container>
   );

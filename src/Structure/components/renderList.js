@@ -7,6 +7,7 @@ export function renderList(TodoList, handleDelete, handleCompleted, handleEdit) 
       item={item}
       handleDelete={handleDelete}
       handleCompleted={handleCompleted}
+      handleEdit= {handleEdit}
       key={item.id}
     ></Task>
   ));

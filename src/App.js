@@ -1,9 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, {useState} from "react";
 import Header from "./Structure/Header.js";
-import MainPage from "./Structure/MainPage.js"
-import Footer from "./Structure/Footer.js";
-import Button from "react-bootstrap/Button";
+import MainPage from "./Structure/MainPage.js";
 import Container from "react-bootstrap/Container";
 import "./App.css"
 function App() {
