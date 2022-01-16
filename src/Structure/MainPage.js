@@ -19,7 +19,7 @@ const MainPage = (props) => {
   const [writtenTask, setWrittenTask] = useState("");
   const [writtenDescription, setWrittenDescription] = useState("");
   //Load the List right after load page
-  useEffect(() => Read(setTodoList));
+  useEffect(() => Read(setTodoList), []);
 
   /*Changing cards handler*/
   // get data from the task data
