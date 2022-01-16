@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import Task from "./components/Task.js";
 import { Create, Read, Update, Delete } from "./components/CRUD.js";
+import ViewMode from "./components/ViewMode.js";
 import {
   Card,
   Col,
@@ -9,30 +8,27 @@ import {
   Row,
   Button,
   Stack,
-  Form,
-  Dropdown,
+  Modal,
 } from "react-bootstrap";
+import { TaskForm } from "./components/TaskForm";
+import { renderList } from "./components/renderList";
 
 const MainPage = (props) => {
   const [TodoList, setTodoList] = useState([]);
-  const [display, setDisplay] = useState("normal");
+  const [display, setDisplay] = useState("Normal");
   const [writtenTask, setWrittenTask] = useState("");
   const [writtenDescription, setWrittenDescription] = useState("");
+  //Load the List right after load page
   useEffect(() => Read(setTodoList));
-  // UI components
-  const changeDisplay = () => {
-    display === "Normal" ? setDisplay("Kanban") : setDisplay("Normal");
-  };
 
   /*Changing cards handler*/
   // get data from the task data
   const onChangeForm = (event) => {
     setWrittenTask(event.target.value);
   };
-  // 
+  //
   const refreshList = () => {
     Read(setTodoList);
-    console.log(TodoList);
   };
   const onSubmitForm = (event) => {
     event.preventDefault();
@@ -52,6 +48,71 @@ const MainPage = (props) => {
     };
     Update(item, dataChange, refreshList);
   };
+
+  const filterNotStarted = (item) => {
+    return item["completed"] === "N";
+  };
+  const filterInProgress = (item) => {
+    return item["completed"] === "P";
+  };
+  const filterFinished = (item) => {
+    return item["completed"] === "F";
+  };
+  if (display === "Kanban") {
+    return (
+      <Container fluid="md" gap={3}>
+        <Row>
+          <Col xs={12}>
+            <TaskForm
+              writtenTask={writtenTask}
+              onChangeForm={onChangeForm}
+              onSubmitForm={onSubmitForm}
+            ></TaskForm>
+            <Stack direction="horizontal" className="col-sm-2 mx-auto" gap={3}>
+              <ViewMode setDisplay={setDisplay}></ViewMode>
+              <Button onClick={refreshList}>Refresh</Button>
+            </Stack>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Card className=" mx-auto overflow-auto" style={{ width: "100%" }}>
+              <Card.Title style={{ textAlign: "center" }}>
+                Not Started
+              </Card.Title>
+              {renderList(
+                TodoList.filter(filterNotStarted),
+                handleDelete,
+                handleCompleted
+              )}
+            </Card>
+          </Col>
+          <Col>
+            <Card className=" mx-auto overflow-auto" style={{ width: "100%" }}>
+              <Card.Title style={{ textAlign: "center" }}>
+                In Progress
+              </Card.Title>
+              {renderList(
+                TodoList.filter(filterInProgress),
+                handleDelete,
+                handleCompleted
+              )}
+            </Card>
+          </Col>
+          <Col>
+            <Card className="mx-auto overflow-auto" style={{ width: "100%" }}>
+              <Card.Title style={{ textAlign: "center" }}>Finished</Card.Title>
+              {renderList(
+                TodoList.filter(filterFinished),
+                handleDelete,
+                handleCompleted
+              )}
+            </Card>
+          </Col>
+        </Row>
+      </Container>
+    );
+  }
   return (
     <Container fluid="md" gap={3}>
       <Row>
@@ -61,9 +122,10 @@ const MainPage = (props) => {
             onChangeForm={onChangeForm}
             onSubmitForm={onSubmitForm}
           ></TaskForm>
-          {refreshList}
-          <ViewMode setDisplay= {setDisplay}></ViewMode>
-          <Button onClick={refreshList}>Refresh</Button>
+          <Stack direction="horizontal" className="col-sm-2 mx-auto" gap={3}>
+            <ViewMode setDisplay={setDisplay}></ViewMode>
+            <Button onClick={refreshList}>Refresh</Button>
+          </Stack>
         </Col>
       </Row>
       <Row gap={5}></Row>
@@ -75,57 +137,4 @@ const MainPage = (props) => {
   );
 };
 
-function ViewMode(props) {
-  const onClickKanbanMode =() => {
-    props.setDisplay('Kanban');
-  }
-  const onClickDefaultMode = () => {
-    props.setDisplay('Default');
-    console.log('Runned');
-  }
-  return (
-    <Dropdown>
-      <Dropdown.Toggle variant="success" id="dropdown-basic">
-        Settings
-      </Dropdown.Toggle>
-
-      <Dropdown.Menu>
-        <Dropdown.Item href="#/action-1" onClick={onClickDefaultMode}>Default Mode</Dropdown.Item>
-        <Dropdown.Item href="#/action-2" onClick={onClickKanbanMode}>Kanban Mode</Dropdown.Item>
-      </Dropdown.Menu>
-    </Dropdown>
-  );
-}
-
-function TaskForm(props) {
-  return (
-    <Form onSubmit={props.onSubmitForm}>
-      <Stack direction="horizontal" gap={3}>
-        <Form.Control
-          className="me-auto"
-          placeholder="Add your item here..."
-          value={props.writtenTask}
-          onChange={props.onChangeForm}
-        />
-        <Button variant="secondary" type="submit">
-          Submit
-        </Button>
-      </Stack>
-    </Form>
-  );
-}
-
-function renderList(TodoList, handleDelete, handleCompleted) {
-  return TodoList.map((item) => (
-    <Task
-      item={item}
-      handleDelete={handleDelete}
-      handleCompleted={handleCompleted}
-      key={item.id}
-    ></Task>
-  ));
-}
-
-
 export default MainPage;
-

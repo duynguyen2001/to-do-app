@@ -12,7 +12,7 @@ function App() {
     <Container fluid className = "App">
       <Header></Header>
       <MainPage></MainPage>
-      <Footer></Footer>
+      {/* <Footer></Footer> */}
     </Container>
   );
 }

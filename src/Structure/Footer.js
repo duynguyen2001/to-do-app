@@ -2,7 +2,7 @@ import "./Footer.css"
 import { Col, Container, Row } from "react-bootstrap";
 function Footer() {
   return (
-    <Container className ="footer">
+    <Container className ="footer" >
       <Col>
         <Row>
           <h3>To Do App</h3>
