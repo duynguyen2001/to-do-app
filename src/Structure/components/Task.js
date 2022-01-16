@@ -46,14 +46,13 @@ function Task(props) {
               {ButtonAction("Change State", props.item, props.handleCompleted)}
               {ButtonAction("Edit Task", props.item, handleShow)}
               {EditModal(props.item, show, handleClose, props.handleEdit)}
-              
               {ButtonAction("Delete Task", props.item, props.handleDelete)}
             </Stack>
 
             {/* <TaskDate month = {date.month} day = {date.day} year = {date.year}></TaskDate> */}
           </Card.Body>
         </Card>
-        <Accordion.Item eventKey="0">
+        <Accordion.Item eventKey="1">
           <Accordion.Header>See description</Accordion.Header>
           <Accordion.Body>{props.item.description}</Accordion.Body>
         </Accordion.Item>

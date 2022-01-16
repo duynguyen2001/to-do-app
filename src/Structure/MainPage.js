@@ -26,6 +26,10 @@ const MainPage = (props) => {
   const onChangeForm = (event) => {
     setWrittenTask(event.target.value);
   };
+  const onChangeDescription = (event) => {
+    setWrittenDescription(event.target.value);
+    console.log(writtenDescription);
+  };
   //
   const refreshList = () => {
     Read(setTodoList);
@@ -68,8 +72,10 @@ const MainPage = (props) => {
           <Col xs={12}>
             <TaskForm
               writtenTask={writtenTask}
+              writtenDescription= {writtenDescription}
               onChangeForm={onChangeForm}
               onSubmitForm={onSubmitForm}
+              onChangeDescription= {onChangeDescription}
             ></TaskForm>
             <Stack direction="horizontal" className="col-sm-2 mx-auto" gap={3}>
               <ViewMode setDisplay={setDisplay}></ViewMode>
@@ -124,6 +130,8 @@ const MainPage = (props) => {
             writtenTask={writtenTask}
             onChangeForm={onChangeForm}
             onSubmitForm={onSubmitForm}
+            writtenDescription= {writtenDescription}
+            onChangeDescription= {onChangeDescription}
           ></TaskForm>
           <Stack direction="horizontal" className="col-sm-2 mx-auto" gap={3}>
             <ViewMode setDisplay={setDisplay}></ViewMode>
