@@ -12,7 +12,6 @@ function Task(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => {
     setShow(true);
-    console.log(show);
   };
 
   return (

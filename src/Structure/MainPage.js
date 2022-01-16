@@ -28,7 +28,6 @@ const MainPage = (props) => {
   };
   const onChangeDescription = (event) => {
     setWrittenDescription(event.target.value);
-    console.log(writtenDescription);
   };
   //
   const refreshList = () => {
