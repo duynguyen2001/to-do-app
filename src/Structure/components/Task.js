@@ -4,16 +4,14 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import Stack from "react-bootstrap/Stack";
 import Accordion from "react-bootstrap/Accordion";
-import { useAccordionButton } from "react-bootstrap/AccordionButton";
 import { useState } from "react";
-// import TaskDate from "./TaskDate";
+import TaskDate from "./TaskDate";
 function Task(props) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => {
     setShow(true);
   };
-
   return (
     <div>
       {" "}
@@ -37,6 +35,17 @@ function Task(props) {
                 ? "In Progress"
                 : "Finished"}
             </Card.Subtitle>
+            <TaskDate date={props.item.date}></TaskDate>
+            <Card.Subtitle>
+              {props.item.priority === 3
+                ? "Urgent and Important"
+                : props.item.priority === 2
+                ? "Urgent and Not Important"
+                : props.item.priority === 1
+                ? "Not Urgent and Important"
+                : "Not Urgent and Not Important"}
+            </Card.Subtitle>
+            <br />
             <Stack
               direction="horizontal"
               className="d-flex justify-content-center"
@@ -47,8 +56,6 @@ function Task(props) {
               {EditModal(props.item, show, handleClose, props.handleEdit)}
               {ButtonAction("Delete Task", props.item, props.handleDelete)}
             </Stack>
-
-            {/* <TaskDate month = {date.month} day = {date.day} year = {date.year}></TaskDate> */}
           </Card.Body>
         </Card>
         <Accordion.Item eventKey="1">
@@ -76,12 +83,14 @@ function EditModal(item, show, handleClose, handleEdit) {
   const [title, setTitle] = useState(item.title);
   const [description, setDescription] = useState(item.description);
   const [completed, setCompleted] = useState(item.completed);
+  const [priority, setPriority] = useState(item.priority);
   const handleSubmit = (event) => {
     event.preventDefault();
     const dataChange = {
       title: title,
       description: description,
       completed: completed,
+      priority: priority,
     };
     handleEdit(item, dataChange);
     handleClose();
@@ -130,6 +139,22 @@ function EditModal(item, show, handleClose, handleEdit) {
               <option value="N">Not Started</option>
               <option value="P">In Progress</option>
               <option value="F">Finished</option>
+            </Form.Control>
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+            <Form.Label>Description</Form.Label>
+            <Form.Control
+              defaultValue={item.priority}
+              as="select"
+              name="priority"
+              onChange={(event) => {
+                setPriority(event.target.value);
+              }}
+            >
+              <option value={0}>Not Urgent and Not Important</option>
+              <option value={1}>Not Urgent and Important</option>
+              <option value={2}>Urgent and Not Important</option>
+              <option value={3}>Urgent and Important</option>
             </Form.Control>
           </Form.Group>
         </Modal.Body>

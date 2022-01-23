@@ -5,7 +5,9 @@ function ViewMode(props) {
   };
   const onClickDefaultMode = () => {
     props.setDisplay("Default");
-    console.log("Runned");
+  };
+  const onClickUrgentMode = () => {
+    props.setDisplay("Urgent");
   };
   return (
     <Dropdown>
@@ -14,11 +16,14 @@ function ViewMode(props) {
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
-        <Dropdown.Item href="#/action-1" onClick={onClickDefaultMode}>
+        <Dropdown.Item onClick={onClickDefaultMode}>
           Default Mode
         </Dropdown.Item>
-        <Dropdown.Item href="#/action-2" onClick={onClickKanbanMode}>
+        <Dropdown.Item onClick={onClickKanbanMode}>
           Kanban Mode
+        </Dropdown.Item>
+        <Dropdown.Item onClick={onClickUrgentMode}>
+          Urgent Mode
         </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>

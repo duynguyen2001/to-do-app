@@ -1,24 +1,18 @@
 import axios from "axios";
-function Read(setTodoList) {
+function Read(setTodoList, option) {
   axios
-    .get("http://localhost:8000/api/todos/")
+    .get(`http://localhost:8000/api/todos${option}/`)
     .then((res) => setTodoList(res["data"]))
     .catch((err) => console.log(err));
 }
-function Create(writtenTask, writtenDescription, refreshList) {
-  if (writtenTask === "") return null;
+function Create(newObject, refreshList) {
+  console.log(newObject);
   axios
-    .post(`http://localhost:8000/api/todos/`, {
-      title: writtenTask,
-      description:
-        writtenDescription === ""
-          ? "No description has been added"
-          : writtenDescription,
-      completed: "N",
-    })
+    .post(`http://localhost:8000/api/todos/`, newObject)
     .then((res) => refreshList());
 }
 function Update(item_id, dataChange, refreshList) {
+  console.log(dataChange)
   axios
     .put(`http://localhost:8000/api/todos/${item_id}/`, dataChange)
     .then((res) => refreshList());
