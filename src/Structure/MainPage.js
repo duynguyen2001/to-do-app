@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Create, Read, Update, Delete } from "./components/CRUD.js";
 import ViewMode from "./components/ViewMode.js";
 import SortingMode from "./components/SortingMode";
-import { Card, Col, Container, Row, Button, Stack } from "react-bootstrap";
+import { Col, Container, Row, Button, Stack } from "react-bootstrap";
 import { TaskForm } from "./components/TaskForm";
-import { renderList } from "./components/renderList";
 import { RenderDefault } from "./RenderDefault";
+import { RenderUrgent } from "./RenderUrgent";
+import { RenderKanban } from "./RenderKanban";
 
 const MainPage = (props) => {
   const [TodoList, setTodoList] = useState([]);
@@ -101,126 +102,4 @@ const MainPage = (props) => {
 };
 
 export default MainPage;
-function RenderKanban(TodoList, handleDelete, handleCompleted, handleEdit) {
-  const filterNotStarted = (item) => {
-    return item["completed"] === "N";
-  };
-  const filterInProgress = (item) => {
-    return item["completed"] === "P";
-  };
-  const filterFinished = (item) => {
-    return item["completed"] === "F";
-  };
-  return (
-    <Row>
-      <Col>
-        <Card className=" mx-auto overflow-auto" style={{ width: "100%" }}>
-          <Card.Title style={{ textAlign: "center" }}>Not Started</Card.Title>
-          {renderList(
-            TodoList.filter(filterNotStarted),
-            handleDelete,
-            handleCompleted,
-            handleEdit
-          )}
-        </Card>
-      </Col>
-      <Col>
-        <Card className=" mx-auto overflow-auto" style={{ width: "100%" }}>
-          <Card.Title style={{ textAlign: "center" }}>In Progress</Card.Title>
-          {renderList(
-            TodoList.filter(filterInProgress),
-            handleDelete,
-            handleCompleted,
-            handleEdit
-          )}
-        </Card>
-      </Col>
-      <Col>
-        <Card className="mx-auto overflow-auto" style={{ width: "100%" }}>
-          <Card.Title style={{ textAlign: "center" }}>Finished</Card.Title>
-          {renderList(
-            TodoList.filter(filterFinished),
-            handleDelete,
-            handleCompleted,
-            handleEdit
-          )}
-        </Card>
-      </Col>
-    </Row>
-  );
-}
-function RenderUrgent(TodoList, handleDelete, handleCompleted, handleEdit) {
-  const filter0 = (item) => {
-    return item["priority"] === 0;
-  };
-  const filter1 = (item) => {
-    return item["priority"] === 1;
-  };
-  const filter2 = (item) => {
-    return item["priority"] === 2;
-  };
-  const filter3 = (item) => {
-    return item["priority"] === 3;
-  };
-  return (
-    <Container>
-      <Row>
-        <Col>
-          <Card className=" mx-auto overflow-auto" style={{ width: "100%" }}>
-            <Card.Title style={{ textAlign: "center" }}>
-              Urgent and Important
-            </Card.Title>
-            {renderList(
-              TodoList.filter(filter3),
-              handleDelete,
-              handleCompleted,
-              handleEdit
-            )}
-          </Card>
-        </Col>
-        <Col>
-          <Card className=" mx-auto overflow-auto" style={{ width: "100%" }}>
-            <Card.Title style={{ textAlign: "center" }}>
-              Urgent and Not Important
-            </Card.Title>
-            {renderList(
-              TodoList.filter(filter2),
-              handleDelete,
-              handleCompleted,
-              handleEdit
-            )}
-          </Card>
-        </Col>
-      </Row>
-      <br />
-      <Row>
-        <Col>
-          <Card className=" mx-auto overflow-auto" style={{ width: "100%" }}>
-            <Card.Title style={{ textAlign: "center" }}>
-              Not Urgent and Important
-            </Card.Title>
-            {renderList(
-              TodoList.filter(filter1),
-              handleDelete,
-              handleCompleted,
-              handleEdit
-            )}
-          </Card>
-        </Col>
-        <Col>
-          <Card className=" mx-auto overflow-auto" style={{ width: "100%" }}>
-            <Card.Title style={{ textAlign: "center" }}>
-              Not Urgent and Not Important
-            </Card.Title>
-            {renderList(
-              TodoList.filter(filter0),
-              handleDelete,
-              handleCompleted,
-              handleEdit
-            )}
-          </Card>
-        </Col>
-      </Row>
-    </Container>
-  );
-}
+

@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, {useState} from "react";
+import React from "react";
 import Header from "./Structure/Header.js";
 import MainPage from "./Structure/MainPage.js";
 import Container from "react-bootstrap/Container";

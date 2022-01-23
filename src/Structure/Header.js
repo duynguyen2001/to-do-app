@@ -1,7 +1,7 @@
 import { Carousel, CarouselItem, Container } from "react-bootstrap";
 function Header() {
   return (
-    <Container>
+    <Container style={{color: "white"}}>
       <h1>To Do App</h1>
       <h2>Let reorganize your days</h2>
       <Carousel variant="secondary">
