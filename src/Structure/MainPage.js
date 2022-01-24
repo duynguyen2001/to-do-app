@@ -91,6 +91,7 @@ const MainPage = (props) => {
           </Stack>
         </Col>
       </Row>
+      <br/>
       <Row gap={5}></Row>
       {display === "Kanban"
         ? RenderKanban(TodoList, handleDelete, handleCompleted, handleEdit)

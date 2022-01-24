@@ -2,8 +2,10 @@ import { Carousel, CarouselItem, Container } from "react-bootstrap";
 function Header() {
   return (
     <Container style={{color: "white"}}>
+      <br/>
       <h1>To Do App</h1>
       <h2>Let reorganize your days</h2>
+      <br/>
       <Carousel variant="secondary">
         <CarouselItem>
           “Subtracting from your list of priorities is as important as adding to it.”
@@ -19,7 +21,7 @@ function Header() {
           “Each day I will accomplish one thing on my to list.”
         </CarouselItem>
       </Carousel>
-      
+      <br/>
     </Container>
   );
 }

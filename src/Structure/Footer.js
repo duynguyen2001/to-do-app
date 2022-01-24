@@ -7,10 +7,10 @@ function Footer() {
         <Row>
           <h3>To Do App</h3>
           <h4>
-            <a href="">About me</a>
+            <a>About me</a>
           </h4>
           <h4>
-            <a href="">Page</a>
+            <a>Page</a>
           </h4>
           <h6>Ⓒ 2022 Khanh Duy Nguyen</h6>
         </Row>
