@@ -13,7 +13,8 @@ var options = {
 function Read(setTodoList, option) {
   axios
     .get('rest/tododatabase',  options)
-    .then((res) => setTodoList(res["data"]))
+    .then((res) => {setTodoList(res.data);
+  console.log(res.data)})
     .catch((err) => console.log(err));
 }
 function Create(newObject, refreshList) {
