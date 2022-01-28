@@ -58,15 +58,15 @@ const MainPage = (props) => {
     Delete(item, refreshList);
   };
   const handleEdit = (item, dataChange) => {
-    Update(item.id, dataChange, refreshList);
+    Update(item._id, dataChange, refreshList);
   };
   const handleCompleted = (item) => {
     const dataChange = {
-      title: item.title,
-      completed:
+      // "_id" : item._id,
+      "completed":
         item.completed === "N" ? "P" : item.completed === "P" ? "F" : "N",
     };
-    Update(item.id, dataChange, refreshList);
+    Update(item._id, dataChange, refreshList);
   };
 
   return (
