@@ -11,7 +11,7 @@ function Read(setTodoList, option) {
   axios
     .get('rest/tododatabase',  options)
     .then((res) => {setTodoList(res.data);
-  console.log(res.data)})
+  console.log(y"data in res : " + res.data)})
     .catch((err) => console.log(err));
 }
 function Create(newObject, refreshList) {
