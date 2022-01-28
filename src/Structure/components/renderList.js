@@ -8,7 +8,7 @@ export function renderList(TodoList, handleDelete, handleCompleted, handleEdit) 
       handleDelete={handleDelete}
       handleCompleted={handleCompleted}
       handleEdit= {handleEdit}
-      key={item.id}
+      key={item._id}
     ></Task>
   ));
 }
