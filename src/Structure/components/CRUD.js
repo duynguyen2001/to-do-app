@@ -5,10 +5,7 @@ var options = {
      'x-apikey': '43de6d653d125545232251985cf074b63e25f',
      'content-type': 'application/json' },
      json: true,
-     proxy: {
-      host: 'localhost',
-      port: 3000
-    }};
+     };
 
 function Read(setTodoList, option) {
   axios
