@@ -2,7 +2,8 @@ import React from "react";
 import Task from "./Task.js";
 
 export function renderList(TodoList, handleDelete, handleCompleted, handleEdit) {
-  return TodoList.map((item) => (
+  const data = Array.from(TodoList);
+  return data.map((item) => (
     <Task
       item={item}
       handleDelete={handleDelete}
